@@ -133,3 +133,42 @@ void UDevEnvironment::process_device(struct udev_device* dev)
     }
 
 }
+
+// 禁用设备
+void UDevEnvironment::DisableDev(QString strDevPath)
+{
+    struct udev *udev = udev_new();
+    if (!udev) {
+        fprintf(stderr, "udev_new() failed\n");
+        return;
+    }
+    struct udev_device *dev_syspath;
+    dev_syspath =udev_device_new_from_syspath(udev, strDevPath.toLatin1().data());
+    udev_device_set_sysattr_value(dev_syspath, "authorized", "0");
+}
+
+// 启用设备
+void UDevEnvironment::EnableDev(QString strDevPath)
+{
+    struct udev *udev = udev_new();
+    if (!udev) {
+        fprintf(stderr, "udev_new() failed\n");
+        return;
+    }
+    struct udev_device *dev_syspath;
+    dev_syspath =udev_device_new_from_syspath(udev, strDevPath.toLatin1().data());
+    udev_device_set_sysattr_value(dev_syspath, "authorized", "1");
+}
+
+// 移除设备
+void UDevEnvironment::RemoveDev(QString strDevPath)
+{
+    struct udev *udev = udev_new();
+    if (!udev) {
+        fprintf(stderr, "udev_new() failed\n");
+        return;
+    }
+    struct udev_device *dev_syspath;
+    dev_syspath =udev_device_new_from_syspath(udev, strDevPath.toLatin1().data());
+    udev_device_set_sysattr_value(dev_syspath, "remove", "1");
+}

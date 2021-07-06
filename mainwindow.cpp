@@ -31,3 +31,24 @@ void MainWindow::on_m_Queue_Btn_clicked()
     environ.getAllQueue();
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    UDevEnvironment environ;
+    environ.EnableDev("/sys/devices/pci0000:00/0000:00:08.1/0000:03:00.3/usb1/1-3");
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    UDevEnvironment environ;
+    environ.DisableDev("/sys/devices/pci0000:00/0000:00:08.1/0000:03:00.3/usb1/1-3");
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    UDevEnvironment environ;
+    environ.RemoveDev("/sys/devices/pci0000:00/0000:00:08.1/0000:03:00.3/usb1/1-3");
+}
+

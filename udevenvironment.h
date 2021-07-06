@@ -17,6 +17,12 @@ public:
     void getAllQueue();
     // 获取所有硬件数据库信息
     void getAllHwdb();
+    // 禁用设备
+    void DisableDev(QString strDevPath);
+    // 启用设备
+    void EnableDev(QString strDevPath);
+    // 移除设备
+    void RemoveDev(QString strDevPath);
 
 private:
     void getAllDevType(udev_enumerate* enumerate);
